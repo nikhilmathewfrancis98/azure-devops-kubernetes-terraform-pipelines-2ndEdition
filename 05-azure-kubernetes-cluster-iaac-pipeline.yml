@@ -25,8 +25,6 @@ steps:
     commandOptions: '-var client_id=$(client_id) -var client_secret=$(client_secret)  -var ssh_public_key=$(publickey.secureFilePath)'
     backendType: 'azurerm'
     backendServiceArm: 'azure-resource-manager-service-connection'
-    backendAzureRmTenantId: '5b3bfb3c-f7b5-41ca-be4b-4174b2a9ab45'
-    backendAzureRmSubscriptionId: '80113cca-9d1e-4436-ba96-6235136ee2cf'
     ensureBackend: true
     backendAzureRmResourceGroupName: 'terraform-backend-rg'
     backendAzureRmResourceGroupLocation: 'westeurope'
