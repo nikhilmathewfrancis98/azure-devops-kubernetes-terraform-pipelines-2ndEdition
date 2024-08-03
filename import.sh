@@ -1,7 +1,13 @@
 #!/bin/bash
 
+# Print the current working directory for debugging
+echo "Current working directory: $(pwd)"
+
 # Change to the working directory where your Terraform files are located
 cd "$(System.DefaultWorkingDirectory)/configuration/iaac/azure/kubernetes"
+
+# Print the new working directory for debugging
+echo "New working directory: $(pwd)"
 
 # Variables
 RESOURCE_GROUP_NAME="kubernetes_dev"
