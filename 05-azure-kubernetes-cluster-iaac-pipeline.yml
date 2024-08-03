@@ -18,6 +18,15 @@ steps:
   name: publickey 
   inputs:
     secureFile: 'azure_RSA.pub'
+
+- task: AzureCLI@2
+  inputs:
+    azureSubscription: 'azure-resource-manager-service-connection'
+    scriptType: 'bash'
+    scriptLocation: 'scriptPath'
+    scriptPath: '$(Pipeline.Workspace)/scripts/import.sh'
+  displayName: 'Import Existing Resource Group'
+
 - task: TerraformCLI@2
   inputs:
     command: 'init'
