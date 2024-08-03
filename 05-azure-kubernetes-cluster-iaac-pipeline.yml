@@ -24,7 +24,7 @@ steps:
     azureSubscription: 'azure-resource-manager-service-connection'
     scriptType: 'bash'
     scriptLocation: 'scriptPath'
-    scriptPath: '$(Pipeline.Workspace)/scripts/import.sh'
+    scriptPath: '$(Pipeline.Workspace)/import.sh'
   displayName: 'Import Existing Resource Group'
 
 - task: TerraformCLI@2
