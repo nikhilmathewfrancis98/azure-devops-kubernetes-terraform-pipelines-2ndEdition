@@ -19,13 +19,13 @@ steps:
   inputs:
     secureFile: 'azure_RSA.pub'
 
-- task: AzureCLI@2
-  inputs:
-    azureSubscription: 'azure-resource-manager-service-connection'
-    scriptType: 'bash'
-    scriptLocation: 'scriptPath'
-    scriptPath: '$(System.DefaultWorkingDirectory)/configuration/iaac/azure/kubernetes/import.sh'
-  displayName: 'Import Existing Resource Group'
+# - task: AzureCLI@2
+#   inputs:
+#     azureSubscription: 'azure-resource-manager-service-connection'
+#     scriptType: 'bash'
+#     scriptLocation: 'scriptPath'
+#     scriptPath: '$(System.DefaultWorkingDirectory)/configuration/iaac/azure/kubernetes/import.sh'
+#   displayName: 'Import Existing Resource Group'
 
 - task: TerraformCLI@2
   inputs:
@@ -39,7 +39,7 @@ steps:
     backendAzureRmResourceGroupLocation: 'westeurope'
     backendAzureRmStorageAccountName: 'storageaccountkeninter'
     backendAzureRmContainerName: 'storageaccountkenintercontainer'
-    backendAzureRmKey: 'kubernetes-dev.tfstate'
+    backendAzureRmKey: 'kubernetes-terraform.tfstate'
     # allowTelemetryCollection: false
 
 
