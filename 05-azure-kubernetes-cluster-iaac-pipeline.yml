@@ -43,12 +43,12 @@ steps:
     # allowTelemetryCollection: false
 
 
-- task: TerraformCLI@2
-  inputs:
-    command: 'apply'
-    workingDirectory: '$(System.DefaultWorkingDirectory)/configuration/iaac/azure/kubernetes'
-    environmentServiceName: 'azure-resource-manager-service-connection'
-    commandOptions: '-var client_id=$(client_id) -var client_secret=$(client_sec)  -var ssh_public_key=$(publickey.secureFilePath)'
+# - task: TerraformCLI@2
+#   inputs:
+#     command: 'apply'
+#     workingDirectory: '$(System.DefaultWorkingDirectory)/configuration/iaac/azure/kubernetes'
+#     environmentServiceName: 'azure-resource-manager-service-connection'
+#     commandOptions: '-var client_id=$(client_id) -var client_secret=$(client_sec)  -var ssh_public_key=$(publickey.secureFilePath)'
 
 - task: TerraformCLI@2
   inputs:
