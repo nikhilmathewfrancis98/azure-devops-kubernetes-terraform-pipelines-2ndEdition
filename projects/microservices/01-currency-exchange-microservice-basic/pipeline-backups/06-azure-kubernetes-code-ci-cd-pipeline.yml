@@ -5,7 +5,7 @@ pool:
   vmImage: ubuntu-latest
 
 variables:
-  tag: 'newlatest-36'  # '$(Build.BuildId)'
+  tag: 'newlatest-$(Build.BuildId)'  # '$(Build.BuildId)'
 
 # Stage -> 1
 # Build the Docker Image
@@ -19,17 +19,18 @@ stages:
       vmImage: ubuntu-latest
     steps:
     - bash: echo "Doing the Image Building!"
-    # - task: Docker@2
-    #   displayName: 'Building an image of $(Build.BuildId)'
-    #   inputs:
-    #     containerRegistry: 'Azure_Pipeline-Curr-Exce-Doc-Hub'
-    #     repository: 'nikhilmathewfranc/azure1_currency-exchange'
-    #     command: 'buildAndPush'
-    #     Dockerfile: '**/Dockerfile'
-    #     tags: $(tag)
+    - task: Docker@2
+      displayName: 'Building an image of $(Build.BuildId)'
+      inputs:
+        containerRegistry: 'Azure_Pipeline-Curr-Exce-Doc-Hub'
+        repository: 'nikhilmathewfranc/azure1_currency-exchange'
+        command: 'buildAndPush'
+        Dockerfile: '**/Dockerfile'
+        tags: $(tag)
     # Now we are commenting the above Docker image creation code since it takes time
     # And we are editing the tag and also create a task to copy the .yaml files 
     # Publishing the K8S files (ie, the deployment.yaml file)
+    # Again we uncommented the docker image creation file since we are not hard coding the tag and using it
     - task: CopyFiles@2
       inputs:
         SourceFolder: '$(System.DefaultWorkingDirectory)'
