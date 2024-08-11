@@ -23,13 +23,8 @@ steps:
 
 # Force unlock the state before applying or destroying
 - script: |
-    echo "Checking if state is locked..."
-    lock_info=$(terraform force-unlock -force-unlock 779a3f98-067f-38e5-5d19-7a17ac800df3)
-    if [[ "$lock_info" == *"No lock"* ]]; then
-      echo "No lock found, proceeding..."
-    else
-      echo "Lock released."
-    fi
+    echo "Forcing unlock of Terraform state..."
+    terraform force-unlock -force 779a3f98-067f-38e5-5d19-7a17ac800df3
   workingDirectory: '$(System.DefaultWorkingDirectory)/configuration/iaac/azure/kubernetes'
   displayName: 'Force Unlock State'
 
