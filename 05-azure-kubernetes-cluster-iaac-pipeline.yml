@@ -63,5 +63,5 @@ steps:
     command: 'destroy'
     workingDirectory: '$(System.DefaultWorkingDirectory)/configuration/iaac/azure/kubernetes'
     environmentServiceName: 'azure-resource-manager-service-connection'
-    commandOptions: '-var client_id=$(client_id) -var client_secret=$(client_sec)  -var ssh_public_key=$(publickey.secureFilePath) -lock-timeout=5m'
+    # commandOptions: '-var client_id=$(client_id) -var client_secret=$(client_sec)  -var ssh_public_key=$(publickey.secureFilePath) -lock-timeout=5m'
 
