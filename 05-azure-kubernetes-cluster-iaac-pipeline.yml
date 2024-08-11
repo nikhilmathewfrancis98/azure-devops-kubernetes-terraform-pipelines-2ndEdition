@@ -13,11 +13,25 @@ steps:
 - script: echo K8S terraform Azure!
   displayName: 'Run a one-line script debug'
 
+
   # Inorder to use the secured file we need to first download that secured file from library
 - task: DownloadSecureFile@1
   name: publickey 
   inputs:
     secureFile: 'azure_RSA.pub'
+
+
+# Force unlock the state before applying or destroying
+# - script: |
+#     echo "Checking if state is locked..."
+#     lock_info=$(terraform force-unlock -force-unlock 779a3f98-067f-38e5-5d19-7a17ac800df3)
+#     if [[ "$lock_info" == *"No lock"* ]]; then
+#       echo "No lock found, proceeding..."
+#     else
+#       echo "Lock released."
+#     fi
+#   workingDirectory: '$(System.DefaultWorkingDirectory)/configuration/iaac/azure/kubernetes'
+#   displayName: 'Force Unlock State'
 
 # - task: AzureCLI@2
 #   inputs:
@@ -48,12 +62,12 @@ steps:
     command: 'apply'
     workingDirectory: '$(System.DefaultWorkingDirectory)/configuration/iaac/azure/kubernetes'
     environmentServiceName: 'azure-resource-manager-service-connection'
-    commandOptions: '-var client_id=$(client_id) -var client_secret=$(client_sec)  -var ssh_public_key=$(publickey.secureFilePath)'
+    commandOptions: '-var client_id=$(client_id) -var client_secret=$(client_sec)  -var ssh_public_key=$(publickey.secureFilePath) -lock-timeout=5m'
 
 - task: TerraformCLI@2
   inputs:
     command: 'destroy'
     workingDirectory: '$(System.DefaultWorkingDirectory)/configuration/iaac/azure/kubernetes'
     environmentServiceName: 'azure-resource-manager-service-connection'
-    
+    commandOptions: '-lock-timeout=5m'
 
